@@ -19,5 +19,3 @@ with sync_playwright() as playwright:
     wrong_email_or_password_alert = page.get_by_test_id('login-page-wrong-email-or-password-alert')
     expect(wrong_email_or_password_alert).to_be_visible()
     expect(wrong_email_or_password_alert).to_have_text('Wrong email or password')
-
-#change

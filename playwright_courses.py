@@ -41,6 +41,3 @@ with sync_playwright() as playwright:
          courses_view_description = page.get_by_test_id('courses-list-empty-view-description-text')
          expect(courses_view_description).to_be_visible()
          expect(courses_view_description).to_have_text('Results from the load test pipeline will be displayed here')
-
-#///python -m playwright_courses///
-#///page.wait_for_timeout(5000)///
