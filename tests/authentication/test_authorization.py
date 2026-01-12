@@ -31,7 +31,7 @@ class TestAuthorization:
         login_page: LoginPage
     ):
         registration_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-        registration_page.registration_form.fill(email='user1.name@gmail.com', username='username',password='password')
+        registration_page.registration_form.fill(email='user.name@gmail.com', username='username',password='password') #user1.name@gmail.com
         registration_page.click_registration_button()
 
         dashboard_page.dashboard_title.check_visible()
@@ -39,7 +39,7 @@ class TestAuthorization:
         dashboard_page.sidebar.check_visible()
         dashboard_page.sidebar.click_logout()
 
-        login_page.login_form.fill(email='user1.name@gmail.com',password='password')
+        login_page.login_form.fill(email='user.name@gmail.com',password='password') #user1.name@gmail.com
         login_page.click_login_button()
 
         dashboard_page.dashboard_title.check_visible()
