@@ -1,6 +1,7 @@
 import pytest
 import allure
 
+from config import settings
 from fixtures.pages import registration_form_component
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
@@ -11,6 +12,10 @@ from tools.allure.epics import AllureEpic
 from tools.allure.features import AllureFeature
 from tools.allure.stories import AllureStory
 from allure_commons.types import Severity
+
+from tools.routes import AppRoute
+
+
 
 @pytest.mark.regression
 @pytest.mark.registration
@@ -31,8 +36,11 @@ class TestRegistration:
             registration_form_component: RegistrationFormComponent,
             dashboard_toolbar_view_component: DashboardToolbarViewComponent
         ):
-                registration_page.visit(
-                        'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration')
-                registration_form_component.fill(email="user.name@gmail.com", username="username", password="password")
+                registration_page.visit(AppRoute.REGISTRATION)
+                registration_form_component.fill(
+                        email=settings.test_user.email,
+                        username=settings.test_user.username,
+                        password=settings.test_user.password
+                )
                 registration_page.click_registration_button()
                 dashboard_page.dashboard_title.check_visible()
