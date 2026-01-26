@@ -1,3 +1,4 @@
+from components.base_component import logger
 from config import settings
 import platform
 import sys
@@ -9,4 +10,5 @@ def create_allure_environment_file():
     properties = '\n'.join(items)
 
     with open(settings.allure_results_dir.joinpath('environment.properties'), 'w+') as file:
+        logger.info('Создаем файл environment.properties!')
         file.write(properties)
