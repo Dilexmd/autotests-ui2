@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip 
           pip install -r requirements.txt
           playwright install --with-deps
-        
+
       - name: Run Playwright tests with pytest and generate Allure results
         run: |
           pytest -m regression --alluredir=./allure-results --numprocesses 2
@@ -36,25 +36,25 @@ jobs:
       needs: run-tests
 
       steps:
-        - name: Get Allure history
-          uses: actions/checkout@v4
-          if: always()
-          continue-on-error: true
-          with:
-            ref: gh-pages
-            path: gh-pages
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-        - name: Allure Report actions from marketplace
-          uses: simple-elf/allure-report-action@v1.13
-          if: always()
-          with:
-            allure_results: allure_results
-            allure_history: allure_history
+      - name: Allure Report actions from marketplace
+        uses: simple-elf/allure-report-action@v1.13
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
 
-        - name: Deploy report to Github Pages
-          if: always()
-          uses: peaceiris/actions-gh-pages@v2
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages
-            PUBLISH_DIR: allure_history
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
