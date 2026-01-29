@@ -36,7 +36,7 @@ jobs:
         if: always()
         with:
           name: allure-results
-          path: allure-results/
+          path: allure-results
 
   publish-report:
       runs-on: ubuntu-latest
