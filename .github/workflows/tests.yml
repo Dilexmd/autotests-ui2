@@ -40,7 +40,7 @@ jobs:
           restore-keys: |
             coverage-history-
 
-      - name: Generate Coverage  report
+      - name: Generate  Coverage  report
         run: |
           ui-coverage-tool save-report
           
